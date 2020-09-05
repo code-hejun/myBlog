@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<nav class="">
+    <ul class="layui-nav">
+        <li class="layui-nav-item layui-this"><a th:href="@{/admin/blog}">博客</a></li>
+        <li class="layui-nav-item"><a th:href="@{/admin/types}">分类</a></li>
+        <li class="layui-nav-item"><a th:href="@{/admin/tags}">标签</a></li>
+        <img class="layui-circle avatar" src="../../static/img/u=2484602611,2998174117&fm=26&gp=0.jpg" th:src="@{/img/u=2484602611,2998174117&fm=26&gp=0.jpg}">
+        <a class="loginOut" th:href="@{/admin/loginOut}">注销</a>
+        <span class="nickname" th:text="${session.user.nickname}">消逝的程序员</span>
+    </ul>
+</nav>
+
+<div class="my-pt40" >
+
+    <div class="layui-container ">
+        <div class="layui-row">
+            <div class="layui-col-md12 main">
+                <div>
+                    <from class="layui-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="title" required  lay-verify="required" placeholder="标题" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <select name="type" lay-verify="required">
+                                        <option value="">分类</option>
+                                        <option th:each="type:${types}" th:value="${type.id}" th:text="${type.name}" value="0">北京</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="layui-inline">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn" lay-submit lay-filter="*">搜索</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </from>
+                    <table id="table-container" class="layui-table" th:fragment="blogList">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>标题</th>
+                                <th>类型</th>
+                                <th>推荐</th>
+                                <th>状态</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="blog,iterStat:${blogs.list}">
+                                <td th:text="${iterStat.count+(blogs.pageNum-1)*blogs.pageSize}"></td>
+                                <td th:text="${blog.title}">许闲心</td>
+                                <td th:text="${blog.type.name}">闲谈</td>
+                                <td th:text="${blog.recommend}?'是':'否'">是</td>
+                                <td th:text="${blog.published}?'发布':'草稿'">草稿</td>
+                                <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2019-10-20</td>
+                                <td>
+                                    <a th:href="@{/admin/blog/{id}/input(id=${blog.id})}"><button type="button" class="layui-btn">修改</button></a>
+                                    <button type="button" class="layui-btn">删除</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a id ="prePage"  th:attr="data-page=${blogs.prePage}" th:href="@{/admin/blog(currentPage=${blogs.prePage})}"  th:unless="${blogs.isFirstPage }">
+                            <button type="button" class="layui-btn" >上一页</button>
+                        </a>
+                        <a id ="nextPage"  th:attr="data-page=${blogs.nextPage}" th:href="@{/admin/blog(currentPage=${blogs.nextPage})}" th:unless="${blogs.isLastPage}">
+                            <button type="button" class="layui-btn" >下一页</button>
+                        </a>
+
+                        <a th:href="@{/admin/blog/input}"><button type="button" class="layui-btn">新增</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<footer th:replace="admin/_fragments :: footer" class="main-footer">
+    <div class="center container">
+        <div class="item">
+            <div  id="imgContainer">
+                <img src="..\..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+
+
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['element','form','jquery'],function () {
+        var element = layui.element;
+        var form = layui.form;
+        var $ = layui.jquery;
+
+       /* $('#prePage').click(function () {
+            $('[name="currentPage"]').val($('#prePage').data("page"));
+            loaddata();
+        })*/
+
+       /* $('#nextPage').click(function () {
+            $('[name="currentPage"]').val($('#nextPage').data("page"));
+            loaddata();
+        })*/
+
+        /*function page(obj) {
+            $('[name="currentPage"]').val($(obj).data("page"));
+            loaddata()
+        }*/
+        
+        function loaddata() {
+            $('#table-container').load("/admin/blog/search",{
+                currentPage: $('[name="currentPage"]').val
+            })
+        }
+    })
+    
+
+</script>
+</body>
+</html>

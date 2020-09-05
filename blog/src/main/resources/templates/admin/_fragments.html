@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+
+<footer class="main-footer" th:fragment="footer">
+    <div class="center container">
+        <div class="item">
+            <div id="imgContainer">
+                <img src="..\..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div class="i-container">
+                <a href="">用户故事1（User Story）</a>
+                <a href="">用户故事2（User Story）</a>
+                <a href="">用户故事3（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div class="Introduction">这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+
+<th:block th:fragment="script">
+    <script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+    <script>
+        layui.use(['element','form','jquery'],function () {
+            var element = layui.element;
+            var form = layui.form;
+            var $ = layui.jquery
+            
+        })
+    </script>
+</th:block>
+</body>
+</html>

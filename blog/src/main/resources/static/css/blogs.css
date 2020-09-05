@@ -1,0 +1,94 @@
+body{
+    background: url("../img/img01.jpg") fixed;
+}
+
+.main{
+    border-radius:5px;
+    padding: 20px;
+    min-height:220px;
+    background-color: rgba(255,255,255,0.9);
+}
+
+.my-table{
+    border-radius:5px;
+}
+
+.avatar{
+    margin-top: 7px;
+    margin-right: 10px;
+    width: 46px;
+    float: right;
+}
+.loginOut{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    color:white;
+}
+.nickname{
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+    color:#c2c2c2;
+}
+
+.container{
+    margin:20px 100px 40px 100px;
+    padding: 5px;
+    border-bottom: 1px solid #8F938F;
+}
+
+#imgContainer{
+    padding:0 0 0 20px;
+    width: 120px;
+    height: 120px;
+}
+
+.item{
+     float: left;
+     width: 170px;
+     height: 120px;
+     padding:15px 15px;
+     border-right: 1px solid #8F938F;
+}
+
+
+.item-last{
+    float: left;
+    width: 450px;
+    height: 130px;
+    padding:15px 15px;
+}
+.Introduction{
+    color: #c9c9c9;
+}
+
+.item-last >h3{
+    margin-bottom: 18px;
+}
+
+.item img{
+    width: 100%;
+}
+
+.item >h3{
+    margin-bottom: 18px;
+}
+
+.item a{
+    display: block;
+    margin-top: 5px;
+    color: #8F938F;
+    text-align: center;
+}
+
+.item a:hover{
+    display: block;
+    margin-top: 5px;
+    color: white;
+    text-align: center;
+}
+
+p{
+    color: #8F938F;
+}

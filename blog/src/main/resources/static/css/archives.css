@@ -1,0 +1,75 @@
+.main-container{
+    margin-top: 20px;
+}
+
+.ar-title{
+    background-color: rgba(255,255,255,0.9);
+    padding: 12px 20px 12px 30px;
+    border-radius: 6px;
+}
+
+#blogNum{
+    display: inline-block;
+    float: right;
+}
+
+.title-font{
+    font-weight: bold;
+    font-size: 20px;
+    color:#FF5722 ;
+    letter-spacing: 3px;
+}
+
+.ar-content{
+    background-color: rgba(255,255,255,0.9);
+    margin-top: 10px;
+    border-radius: 6px;
+}
+.ar-year{
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    color: #FF5722;
+    font-weight: 600;
+}
+.ar-blogList{
+    border: 1px #FF5722 solid;
+    border-radius:0 0 6px 6px;
+}
+
+.ar-blogList>a{
+     display: block;
+     border-bottom: 1px #FF5722 solid;
+     padding: 8px 10px;
+     font-size: 14px;
+ }
+.ar-blogList>a:hover{
+    background-color: rgba(30,159,255,0.1);
+}
+
+.ar-blogList>a:last-child{
+  /*  display: block;*/
+    border-bottom: 0 #FF5722 solid;
+}
+
+.blog-title{
+    display: inline-block;
+    padding: 2px;
+    margin-right: 4px;
+}
+.blog-updateTime{
+    display: inline-block;
+    padding: 1px 4px;
+    border: 1px #00aaaa solid;
+    border-radius: 5px;
+    background: #00aaaa;
+    color: white;
+}
+.flag{
+    display: inline-block;
+    float: right;
+    border: 1px #00aaaa solid;
+    border-radius: 5px;
+    padding: 1px 4px;
+    color: #00aaaa;
+}

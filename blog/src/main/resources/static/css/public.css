@@ -1,0 +1,45 @@
+.my-mb60{
+    margin-bottom: 60px;
+}
+
+.my-mb20{
+    margin-bottom: 20px;
+}
+
+.my-pt20{
+    padding-top: 20px;
+}
+
+.my-pt40{
+    padding-top: 40px;
+}
+
+.clear{
+    clear:both;
+}
+
+.center{
+    text-align: center;
+}
+
+
+.main-footer{
+
+    margin-top: 60px;
+    padding:20px 18px 50px 18px;
+    text-align: center;
+    background: #393D49;
+    color: white;
+}
+
+.my-h300{
+    height: 300px;
+}
+
+.my-ml6{
+    margin-left: 6px;
+}
+
+.my-ml16{
+    margin-left: 16px;
+}

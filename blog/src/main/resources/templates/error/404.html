@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/error.css" th:href="@{/css/error.css}">
+    <link rel="stylesheet" href="../../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<nav class="">
+    <ul class="layui-nav center">
+        <li class="layui-nav-item"><a href="index.html" th:href="@{/}">首页</a></li>
+        <li class="layui-nav-item"><a href="type.html" th:href="@{/types/-1}">分类</a></li>
+        <li class="layui-nav-item"><a href="404.html" th:href="@{/tags/-1}">标签</a></li>
+        <li class="layui-nav-item"><a href="archives.html" th:href="@{/archives}">归档</a></li>
+        <li class="layui-nav-item"><a href="about.html" th:href="@{/about}">关于我</a></li>
+    </ul>
+</nav>
+
+<div class="" >
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md8 layui-col-md-offset2 " >
+
+                <div class="error animated slideInLeft">
+                    <div class="error-context">
+                        <div class="error-code">404</div>
+                        <div class="error-msg">对不起，你访问的资源不存在</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footer" class="main-footer">
+    <div class="center container">
+        <div class="item">
+            <div  id="imgContainer">
+                <img src="..\..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    layui.use('element',function () {
+        var element = layui.element;
+    })
+
+</script>
+</body>
+</html>

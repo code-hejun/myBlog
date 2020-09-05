@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>标签管理</title>
+    <link rel="stylesheet" href="../../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<nav class="">
+    <ul class="layui-nav">
+        <li class="layui-nav-item"><a th:href="@{/admin/blog}">博客</a></li>
+        <li class="layui-nav-item"><a th:href="@{/admin/types}">分类</a></li>
+        <li class="layui-nav-item layui-this"><a th:href="@{/admin/tags}">标签</a></li>
+        <img class="layui-circle avatar" src="../../static/img/u=2484602611,2998174117&fm=26&gp=0.jpg" th:src="@{/img/u=2484602611,2998174117&fm=26&gp=0.jpg}">
+        <a class="loginOut" th:href="@{/admin/loginOut}">注销</a>
+        <span class="nickname" th:text="${session.user.nickname}">消逝的程序员</span>
+    </ul>
+</nav>
+
+<div class="my-pt40" >
+
+    <div class="layui-container ">
+        <div class="layui-row">
+            <div class="layui-col-md12 main">
+                <div>
+                    <table class="layui-table my-table">
+                        <colgroup>
+                            <col width="150">
+                            <col width="200">
+                            <col>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                            <tr th:each="tag,iterStat : ${tags.list}">
+                                <td th:text="${iterStat.count+(tags.pageNum-1)*tags.pageSize}">1</td>
+                                <td th:text="${tag.name}">闲谈</td>
+                                <td>
+                                    <a th:href="@{/admin/tags/{id}/input(id=${tag.id})}">
+                                        <button type="button" class="layui-btn">修改</button>
+                                    </a>
+                                    <a th:href="@{/admin/tags/{id}/delete(id=${tag.id})}">
+                                        <button type="button" class="layui-btn">删除</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <a id="prePage" th:attr="data-page=${tags.prePage}" th:href="@{/admin/tags(currentPage=${tags.prePage})}"  th:unless="${tags.isFirstPage }">
+                            <button type="button" class="layui-btn" >上一页</button>
+                        </a>
+                        <a id="nextPage" th:attr="data-page=${tags.nextPage}" th:href="@{/admin/tags(currentPage=${tags.nextPage})}" th:unless="${tags.isLastPage}">
+                            <button type="button" class="layui-btn" >下一页</button>
+                        </a>
+                        <a th:href="@{/admin/tags/input}">
+                            <button type="button" class="layui-btn">新增</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer th:replace="admin/_fragments :: footer" class="main-footer">
+    <div class="center container">
+        <div class="item">
+            <div  id="imgContainer">
+                <img src="..\..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+
+
+
+<script src="../../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<script>
+    layui.use(['element','form'],function () {
+        var element = layui.element;
+        var form = layui.form;
+    })
+
+
+
+</script>
+</body>
+</html>

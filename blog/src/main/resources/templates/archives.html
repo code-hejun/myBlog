@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/archives.css" th:href="@{/css/archives.css}">
+    <link rel="stylesheet" href="../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<nav class="">
+    <ul class="layui-nav center">
+        <li class="layui-nav-item"><a href="index.html" th:href="@{/}">首页</a></li>
+        <li class="layui-nav-item"><a href="type.html" th:href="@{/types/-1}">分类</a></li>
+        <li class="layui-nav-item"><a href="tag.html" th:href="@{/tags/-1}">标签</a></li>
+        <li class="layui-nav-item layui-this"><a href="archives.html" th:href="@{/archives}">归档</a></li>
+        <li class="layui-nav-item"><a href="about.html" th:href="@{/about}">关于我</a></li>
+    </ul>
+</nav>
+
+<div class="main-container" >
+    <div class="layui-container">
+        <div class="layui-row" >
+            <div class="layui-col-md8 layui-col-md-offset2 " >
+                <div class="archives-container" >
+
+                    <div class="ar-title animated slideInDown">
+                        <span class="title-font">归档</span>
+                        <span id="blogNum">
+                            <span>共</span>
+                            <span class="title-font" th:text="${blogCount}">16</span>
+                            <span>篇</span>
+                        </span>
+                        <div class="clear"></div>
+                    </div>
+
+                    <th:block th:each="item:${archiveMap}">
+                    <div class="ar-content animated slideInLeft" >
+                        <div class="ar-year" th:text="${item.key}">2020</div>
+                        <div class="ar-blogList" >
+                            <a th:each="blog:${item.value}" th:href="@{/blog/{id}(id=${blog.id})}">
+                                <span class="blog-title" th:text="${blog.title}">
+                                     ORA-28000: the account is locked-的解决办法
+                                </span>
+                                <span class="blog-updateTime" th:text="${#dates.format(blog.updateTime,'MMMdd')}">7月20</span>
+                                <span class="flag" th:text="${blog.flag}">原创</span>
+                                <div class="clear"></div>
+                            </a>
+                        </div>
+                    </div>
+                    </th:block>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footer" class="main-footer">
+    <div class="center container">
+        <div class="item">
+            <div  id="imgContainer">
+                <img src="..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="../static/layui/layui.js"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    layui.use('element',function () {
+        var element = layui.element;
+    })
+
+</script>
+</body>
+</html>

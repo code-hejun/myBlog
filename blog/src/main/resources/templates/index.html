@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/blogs.css" th:href="@{/css/blogs.css}">
+    <link rel="stylesheet" href="../static/css/index.css" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="../static/css/public.css" th:href="@{/css/public.css}">
+    <link rel="stylesheet" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+    <link rel="stylesheet" href="../static/layui/css/layui.css" th:href="@{/layui/css/layui.css}">
+</head>
+<body>
+
+<nav class="">
+    <ul class="layui-nav center">
+        <li class="layui-nav-item layui-this"><a href="index.html" th:href="@{/}">首页</a></li>
+        <li class="layui-nav-item"><a href="type.html" th:href="@{/types/-1}">分类</a></li>
+        <li class="layui-nav-item"><a href="tag.html" th:href="@{/tags/-1}">标签</a></li>
+        <li class="layui-nav-item"><a href="archives.html" th:href="@{/archives}">归档</a></li>
+        <li class="layui-nav-item"><a href="about.html" th:href="@{/about}">关于我</a></li>
+    </ul>
+</nav>
+
+<div class="my-pt40">
+    <div class="layui-container">
+        <div class="layui-row layui-col-space30 ">
+
+            <div class="layui-col-md8">
+                <div class="">
+                    <div class="animated rotateInDownLeft" th:each="blog:${blogInfo.list}" id="blogContainer">
+                        <div class="main-left">
+                            <div class="blog">
+                                <div class="blog-top">
+                                    <div class="blog-top-left">
+                                        <img src="../static/img/1585226165.jpeg" th:src="@{${blog.firstPicture}}">
+                                    </div>
+                                    <div class="blog-top-right">
+                                        <div class="blog-title">
+                                            <a th:href="@{/blog/{id}(id=${blog.id})}">
+                                                <h3 th:text="${blog.title}">Redis基础操作和使用场景</h3>
+                                            </a>
+                                        </div>
+                                        <div th:text="${blog.description}" style="color: #78846f">
+                                            一.常用存储类型字符串string哈希hash列表list集合set有序集合zset 二.Redis使用场景解析...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                                <div class="blog-footer ">
+                                    <span>
+                                        <i class="layui-icon layui-icon-date" style="font-size: 15px; color: #1E9FFF;"></i>
+                                        <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">时间</span>
+                                    </span>
+                                    <span>
+                                        <i class="layui-icon layui-icon-username" style="font-size: 15px; color: #1E9FFF;"></i>
+                                        <span th:text="${blog.author}">作者</span>
+                                    </span>
+                                    <span>
+                                        <i class="layui-icon layui-icon-file-b" style="font-size: 15px; color: #1E9FFF;"></i>
+                                        <span th:text="${blog.type.name}">归类</span>
+                                    </span>
+                                    <!--<span>标签</span>-->
+                                    <span class="span-right">
+                                         <i class="layui-icon layui-icon-dialogue" style="font-size: 15px; color: #1E9FFF;"></i>
+                                        <span th:text="${#arrays.length(blog.comments)}">留言</span>
+                                    </span>
+                                    <span class="span-right">
+                                        <i class="layui-icon layui-icon-read" style="font-size: 15px; color: #1E9FFF;"></i>
+                                        <span th:text="${blog.views}">浏览</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pageInfo  animated bounceInUp">
+                    <div class="page">
+                        <span>第</span>
+                        <span th:text="${blogInfo.pageNum}"></span>
+                        <span>页</span>
+                        <span>共</span>
+                        <span th:text="${blogInfo.pages}"></span>
+                        <span class="last-text">页</span>
+                        <a class="layui-btn layui-btn-sm" th:href="@{/(currentPage=${blogInfo.prePage})}"
+                           th:unless="${blogInfo.isFirstPage }">上一页</a>
+                        <a class="layui-btn layui-btn-sm" th:href="@{/(currentPage=${blogInfo.nextPage})}"
+                           th:unless="${blogInfo.isLastPage}">下一页</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md4">
+
+                <div class="type animated bounceInRight">
+                    <div class=type-title>
+                        <div>
+                            <i class="layui-icon layui-icon-file-b" style="font-size: 14px; color: #FD482C;"></i>
+                            <span class="my-ml6">分类</span>
+                        </div>
+                    </div>
+                    <div class="type-content">
+                        <ul class="type-content-ul">
+                            <div>
+                                <a th:each="type:${typeTop}" th:href="@{/types/{id}(id=${type.id})}">
+                                    <li>
+                                        <span th:text="${type.name}">Java</span>
+                                        <span class="span-right" th:text="${#arrays.length(type.blogList)}">12</span>
+                                        <div class="clear"></div>
+                                    </li>
+                                </a>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="tag animated bounceInRight">
+                    <div class=tag-title>
+                        <div>
+                            <i class="layui-icon layui-icon-note" style="font-size: 14px; color: #FD482C;"></i>
+                            <span class="my-ml6">标签</span>
+                        </div>
+                    </div>
+                    <div class=tag-content>
+                        <a th:each="tag:${tagTop}" th:href="@{/tags/{id}(id=${tag.id})}">
+                            <div class="tag-grid">
+                                <span th:text="${tag.name}">Java</span>
+                                <span th:text="${#arrays.length(tag.blogList)}"></span>
+                            </div>
+                        </a>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="rank animated bounceInRight">
+                    <div class="rank-title">
+                        <div>
+                            <i class="layui-icon layui-icon-tabs" style="font-size: 15px; color: #FD482C;"></i>
+                            <span class="my-ml6">文章排行</span>
+                        </div>
+                    </div>
+                    <div class="rank-content">
+                        <ul>
+                            <li th:each="blog,iterStat :${blogByViewsTop}">
+                                <span th:text="${iterStat.count}" th:classappend="${iterStat.count}<= 3 ? 'rank-number-red':'rank-number-blue'">1</span>
+
+                               <!-- <a th:href="@{/blog/{id}(id=${blog.id})}">
+                                    <span class="rank-blog-title" th:text="${blog.title}">
+                                        redis下载与安装
+                                    </span>
+                                </a>-->
+                                <a class="rank-blog-title" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">
+                                    redis下载与安装
+                                </a>
+                                <span class="span-right rank-element">
+                                    <span th:text="${blog.views}">17</span>
+                                    <span>阅读</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="_fragments :: footer" class="main-footer">
+    <div class="center container">
+        <div class="item">
+            <div  id="imgContainer">
+                <img src="..\static\img\微信图片_20200809182130.jpg" th:src="@{\img\微信图片_20200809182130.jpg}">
+            </div>
+        </div>
+        <div class="item">
+            <h3>最新博客</h3>
+            <div>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+                <a href="">用户故事（User Story）</a>
+            </div>
+        </div>
+        <div class="item">
+            <h3>联系我</h3>
+            <a href="">Email:707054726@qq.com</a>
+            <a href="">QQ:707054726</a>
+        </div>
+        <div class="item-last">
+            <h3>blog</h3>
+            <div>这是我的个人博客、会分享关于编程、写作、思考相关的任何内容，希望可以给来到这儿的人有所帮助...</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <p>
+        <span>Copyright</span>
+        <span>&copy;</span>
+        <span>2020-2021</span>
+        <span>Design By HJ</span>
+    </p>
+</footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+<script src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+<!--/*/</th:block>/*/-->
+<script>
+    layui.use(['element','jquery'],function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+
+    })
+
+</script>
+</body>
+</html>
