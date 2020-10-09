@@ -92,3 +92,11 @@ body{
 p{
     color: #8F938F;
 }
+
+#domain{
+    margin-top: 10px;
+}
+
+#domain > a{
+    color: #8F938F;
+}
