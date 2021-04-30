@@ -2,6 +2,7 @@ package com.hj.blog.contorller;
 
 import com.github.pagehelper.PageInfo;
 import com.hj.blog.po.Blog;
+import com.hj.blog.po.Tag;
 import com.hj.blog.service.BlogService;
 import com.hj.blog.service.TagService;
 import com.hj.blog.service.TypeService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 
 @Controller
@@ -32,8 +34,9 @@ public class IndexController {
                         @RequestParam(defaultValue = "5") Integer pageSize, Model model,
                         HttpSession session){
         //System.out.println(session.getAttribute("user"));
-        model.addAttribute("tagTop",tagService.getTagTop(6));
-        model.addAttribute("typeTop",typeService.getTypeTop(3));
+
+        model.addAttribute("tagTop",tagService.getTagTop(12));
+        model.addAttribute("typeTop",typeService.getTypeTop(6));
         model.addAttribute("blogByViewsTop",blogService.getBlogByViewsTop(6));
         PageInfo<Blog> blogInfo =  blogService.listBlogForIndex(currentPage,pageSize);
         model.addAttribute("blogInfo",blogInfo);

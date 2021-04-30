@@ -39,7 +39,7 @@
         </collection>
     </resultMap>
     <select id="getTagTop" resultMap="tagMap">
-        select t.id,t.name,count(1) from tag t left join blog_tag bt on t.id = bt.tid GROUP BY t.id ORDER BY count(1) desc limit #{count};
+        select t.id,t.name,count(1) from tag t right join blog_tag bt on t.id = bt.tid GROUP BY t.id ORDER BY count(1) desc limit #{count};
     </select>
 
     <!--=========================type============================-->
@@ -73,7 +73,7 @@
         </collection>
     </resultMap>
     <select id="getTypeTop" resultMap="typeMap">
-        select t.id,t.name,count(1) from types t left join blog b on t.id = b.typeId GROUP BY t.id ORDER BY count(1) desc limit #{count};
+        select t.id,t.name,count(1) from types t right join blog b on t.id = b.typeId GROUP BY t.id ORDER BY count(1) desc limit #{count};
     </select>
 
  <!--==========================blog===========================-->
@@ -343,7 +343,7 @@
     <!--=====================================================-->
 
     <select id="checkUser" resultType="com.hj.blog.po.User">
-        select * from User where username = #{username} and password = #{password}
+        select * from user where username = #{username} and password = #{password}
     </select>
 
 
